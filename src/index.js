@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Deck from './deck.js'
+import "./index.css"
 
 class App extends Component {
     constructor(props){

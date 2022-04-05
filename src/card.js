@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import './card.css'
 
 class Card extends Component {
 
     render(){
         return(
-            <img src={this.props.img}/>
+            <div >
+            <img className='card' src={this.props.img}/>
+            </div>
         )
     }
 }

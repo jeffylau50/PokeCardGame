@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Card from './card.js'
+import './deck.css'
 
 const APIurl = "https://deckofcardsapi.com/api/deck/new/shuffle/"
 
@@ -9,7 +10,7 @@ class Deck extends Component {
         super(props);
         this.state = {
             deck : '',
-            img: '',
+            img: [],
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -20,14 +21,17 @@ class Deck extends Component {
     async handleClick(){
         let imginfo = await axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deck.deck_id}/draw/`)
         console.log(imginfo.data.cards[0].image)
-        this.setState({img: imginfo.data.cards[0].image})
-        console.log('h'+ this.state.img)
+        this.setState(state => ({ img: [...state.img, imginfo.data.cards[0].image ]}))
     }
     render(){
         return(
             <div>
-            <Card img={this.state.img}/>
-            <button onClick={this.handleClick}>New Card</button>
+            <div className='buttonclass'>
+            <button className='btn btn-info mt-5 mb-5' onClick={this.handleClick}>Draw a Card</button>
+            </div>
+            <div className='deckClass'>
+            {this.state.img.map(img => <Card img={img}/>)}
+            </div>
             </div>
         )
     }
