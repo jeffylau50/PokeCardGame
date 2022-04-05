@@ -11,8 +11,10 @@ class Deck extends Component {
         this.state = {
             deck : '',
             img: [],
+            count: 52
         };
         this.handleClick = this.handleClick.bind(this);
+        this.restart = this.restart.bind(this);
     }
     async componentDidMount() {
     let deck = await axios.get(APIurl);
@@ -20,19 +22,30 @@ class Deck extends Component {
     }
     async handleClick(){
         let imginfo = await axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deck.deck_id}/draw/`)
-        console.log(imginfo.data.cards[0].image)
         this.setState(state => ({ img: [...state.img, imginfo.data.cards[0].image ]}))
+        this.setState(state=> ({count: state.count - 1} ) )
     }
+    restart(){
+        window.location.reload();
+
+    }
+    
     render(){
         return(
             <div>
             <div className='buttonclass'>
+            <br/>   
             <button className='btn btn-info mt-5 mb-5' onClick={this.handleClick}>Draw a Card</button>
             </div>
             <div className='deckClass'>
-            {this.state.img.map(img => <Card img={img}/>)}
+            {this.state.img.map(img => <Card  img={img}/>)}
+            </div>            
+
+            <h4>Card Remaining: {this.state.count}</h4>
+            <button onClick={this.restart} className='buttonRestart btn btn-danger '>New Deck</button>
+
             </div>
-            </div>
+            
         )
     }
 }

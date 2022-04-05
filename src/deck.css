@@ -6,6 +6,18 @@
     margin-bottom: 50px;
 }
 
-.deckClass{
+h4{
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 500px;
+    margin-bottom: 20px;
+    color: white;
+}
 
+.buttonRestart{
+  
+margin-top: 10px;
 }
