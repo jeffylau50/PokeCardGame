@@ -21,9 +21,11 @@ class Deck extends Component {
     this.setState({deck: deck.data})
     }
     async handleClick(){
+        if(this.state.count>0){
         let imginfo = await axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deck.deck_id}/draw/`)
         this.setState(state => ({ img: [...state.img, imginfo.data.cards[0].image ]}))
         this.setState(state=> ({count: state.count - 1} ) )
+        }
     }
     restart(){
         window.location.reload();
