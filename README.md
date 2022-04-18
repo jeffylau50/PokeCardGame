@@ -1,4 +1,4 @@
-# Lights Out | Web Game
+# Poker Card Simulator | Web Game
 
 This Web Game was built with React.js deployed on HeroKu
 
